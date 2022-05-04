@@ -1,55 +1,71 @@
 const compArray = ['rock' , 'paper' , 'scissors'];
 const compChoiceRandom = compArray [Math.floor(Math.random() * compArray.length | 0)];
-const rock = document.querySelector('.rock');
-const paper = document.querySelector('.paper');
-const scissors = document.querySelector('.scissors');
+const selectionButtons = document.querySelectorAll('[data-selection]')
+const results = document.querySelector('.results');
+const playerEmoji = document.querySelector('.scoreu');
+const compEmoji = document.querySelector('.scorec');
+const playerScore = document.querySelector('.score-counteru');
+const compScore = document.querySelector('.score-counterc');
 
 let userWin = 0;
 let compWin = 0;
 
-function compPlay () {
-    return compChoiceRandom
+const playerChoice = selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', () => {
+        const selectionName = selectionButton.dataset.selection
+        makeSelection(selectionName);
+        compChoice();
+        oneRound(playerChoice, compChoice());
+        game(playerChoice, compChoice());
+        
+    })
+});
+
+function makeSelection(selectionName) {
+
+    if(selectionName == 'rock') {
+        playerEmoji.textContent = '👊'
+    } else if(selectionName == 'paper') {
+        playerEmoji.textContent = '✋'
+    } else if(selectionName == 'scissors') {
+        playerEmoji.textContent = '✌'
+    }
+
 };
 
-
-
-
-//Plays one round calling the playerChoice and random computer choice coded above, .toLowerCase() added to keep the user input consistent
-function oneRound(playerChoice, compChoice,) {  
-    playerChoice = playerChoice.toLowerCase();
-    while(userWin < 5 && compWin <5) {
+function oneRound(playerChoice, compChoice) {  
     if(playerChoice == compChoice) {
-        return `You tied, try again?`;
+        return results.textContent = `You tied, try again?`;
     } else if(playerChoice == 'paper' && compChoice == 'scissors' || playerChoice == 'rock' && compChoice == 'paper' || playerChoice == 'scissors' && compChoice == 'rock') {
         compWin++
-        return `You lost! ${compChoice} beats ${playerChoice}... Try again?`;
+        return results.textContent = `You lost! ${compChoice} beats ${playerChoice}... Try again?`;
     } else if(playerChoice == 'paper' && compChoice == 'rock' || playerChoice == 'rock' && compChoice == 'scissors' || playerChoice == 'scissors' && compChoice == 'paper') {
         userWin++
-        return `You won! ${playerChoice} beats ${compChoice}. Keep it up!`;
-    } else {
-        return alert('Error please select rock, paper, or scissors.');
-    };
+        return results.textContent = `You won! ${playerChoice} beats ${compChoice}. Keep it up!`;
     }
 };
 //initializing both playerChoice and compChoice (calling the compPlay() function) compWin and userWin play later to create a scoreboard
-//toLowerCase() added again to keep user input consistent, game() function calls the oneRound() function and loops through the rounds till first to hit 5 wins
-function game() {
-    for(i = 0; userWin < 5 && compWin <5; i++) {
-        let playerChoice = prompt('Rock, Paper or Scissors?');
-        playerChoice = playerChoice.toLowerCase();
-        compChoice = compArray [Math.floor(Math.random() * compArray.length | 0)];
-        console.log(`You threw out ${playerChoice}`);
-        console.log(`Computer threw out ${compChoice}...`);
-        console.log(oneRound(playerChoice,compChoice));
-        console.log(`Player score: ${userWin} Computer score: ${compWin}`)
+
+function game(playerChoice, compChoice) {
+        makeSelection();
+        if(compChoice == 'rock') {
+            compEmoji.textContent = '👊';
+        } else if(compChoice == 'paper') {
+            compEmoji.textContent = '✋';
+        } else if(compChoice == 'scissors') {
+            compEmoji.textContent = '✌';
+        };
+        oneRound(playerChoice,compChoice);
+        playerScore.textContent = `Player score: ${userWin}`;
+        compScore.textContent = `Computer score: ${userWin}`;
         
-    }
-    if(userWin == 5) {
-        alert('Game Over! You Win!')
-    } else if(compWin == 5) {
-        alert('Game Over! You Lost...')
+        if(userWin == 5) {
+        alert('Game Over! You Win!');
+        } else if(compWin == 5) {
+        alert('Game Over! You Lost...');
     }
 };
 
-game();
-
+function compChoice() {
+    compArray [Math.floor(Math.random() * compArray.length | 0)];
+} 
