@@ -1,29 +1,24 @@
 const compArray = ['rock' , 'paper' , 'scissors'];
-//const compChoiceRandom = compArray [Math.floor(Math.random() * compArray.length | 0)];
 const selectionButtons = document.querySelectorAll('[data-selection]')
 const results = document.querySelector('.results');
 const playerEmoji = document.querySelector('.scoreu');
 const compEmoji = document.querySelector('.scorec');
 const playerScore = document.querySelector('.score-counteru');
 const compScore = document.querySelector('.score-counterc');
-//const compChoice = compArray [Math.floor(Math.random() * compArray.length | 0)];
 
 let userWin = 0;
 let compWin = 0;
 
-//for(i = 0; userWin < 5 && compWin <5; i++) {
-    let playerChoice = selectionButtons.forEach(selectionButton => {
-        selectionButton.addEventListener('click', () => {
-            const selectionName = selectionButton.dataset.selection
-            playerChoice = selectionName;
-            let compChoice = compArray [Math.floor(Math.random() * compArray.length | 0)];
-            makeSelection(selectionName);
-            oneRound(playerChoice, compChoice);
-            game(playerChoice, compChoice);
-
+let playerChoice = selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', () => {
+        const selectionName = selectionButton.dataset.selection
+        playerChoice = selectionName;
+        let compChoice = compArray [Math.floor(Math.random() * compArray.length | 0)];
+        makeSelection(selectionName);
+        oneRound(playerChoice, compChoice);
+        game(playerChoice, compChoice);
         })
     })   
-//};
 
 function makeSelection(selectionName) {
 
@@ -48,7 +43,6 @@ function oneRound(playerChoice, compChoice) {
         return results.textContent = `You won! ${playerChoice} beats ${compChoice}. Keep it up!`;
     }
 };
-//initializing both playerChoice and compChoice (calling the compPlay() function) compWin and userWin play later to create a scoreboard
 
 function game(playerChoice, compChoice) {
         makeSelection();
