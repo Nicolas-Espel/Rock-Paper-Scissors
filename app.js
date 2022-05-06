@@ -6,20 +6,24 @@ const playerEmoji = document.querySelector('.scoreu');
 const compEmoji = document.querySelector('.scorec');
 const playerScore = document.querySelector('.score-counteru');
 const compScore = document.querySelector('.score-counterc');
+const compChoice = compArray [Math.floor(Math.random() * compArray.length | 0)];
 
 let userWin = 0;
 let compWin = 0;
 
-const playerChoice = selectionButtons.forEach(selectionButton => {
-    selectionButton.addEventListener('click', () => {
-        const selectionName = selectionButton.dataset.selection
-        makeSelection(selectionName);
-        compChoice();
-        oneRound(playerChoice, compChoice());
-        game(playerChoice, compChoice());
-        
-    })
-});
+//while(userWin < 5 || compWin < 5) {
+    let playerChoice = selectionButtons.forEach(selectionButton => {
+        selectionButton.addEventListener('click', () => {
+            const selectionName = selectionButton.dataset.selection
+            playerChoice = selectionName;
+            compChoice;
+            makeSelection(selectionName);
+            oneRound(playerChoice, compChoice);
+            game(playerChoice, compChoice);
+            
+        })
+    })   
+//};
 
 function makeSelection(selectionName) {
 
@@ -55,17 +59,12 @@ function game(playerChoice, compChoice) {
         } else if(compChoice == 'scissors') {
             compEmoji.textContent = '✌';
         };
-        oneRound(playerChoice,compChoice);
         playerScore.textContent = `Player score: ${userWin}`;
-        compScore.textContent = `Computer score: ${userWin}`;
+        compScore.textContent = `Computer score: ${compWin}`;
         
         if(userWin == 5) {
         alert('Game Over! You Win!');
         } else if(compWin == 5) {
         alert('Game Over! You Lost...');
-    }
+        }
 };
-
-function compChoice() {
-    compArray [Math.floor(Math.random() * compArray.length | 0)];
-} 
