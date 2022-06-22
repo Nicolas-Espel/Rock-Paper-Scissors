@@ -5,6 +5,11 @@ const playerEmoji = document.querySelector('.scoreu');
 const compEmoji = document.querySelector('.scorec');
 const playerScore = document.querySelector('.score-counteru');
 const compScore = document.querySelector('.score-counterc');
+const restart = document.querySelector('.restart');
+const gameOver = document.querySelector('.game-over-screen');
+const gameOverResult = document.querySelector('.game-over-result');
+const gameOverContent = document.querySelector('.game-over-content');
+
 
 let userWin = 0;
 let compWin = 0;
@@ -57,8 +62,14 @@ function game(playerChoice, compChoice) {
         compScore.textContent = `Computer score: ${compWin}`;
         
         if(userWin == 5) {
-        alert('Game Over! You Win!');
+        gameOver.classList.remove('hide')
+        gameOver.classList.add('fade')
+        gameOverResult.textContent = 'WOW! YOU WON!!'
+        gameOverContent.textContent = `Looks like you're smarter than a computer! You should play again...`
         } else if(compWin == 5) {
-        alert('Game Over! You Lost...');
+            gameOver.classList.remove('hide')
+            gameOver.classList.add('fade')
+            gameOverResult.textContent = 'YOU... LOST??'
+            gameOverContent.textContent = `You let a computer beat you huh... How about you try again?`
         }   
 };
