@@ -101,9 +101,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     position: absolute;
-    margin: auto;
-    margin-top: -35%;
-    margin-left: 29%;
+    top: 30%;
+    left: 29%;
     height: 500px;
     width: 40%;
     z-index: 1;
@@ -153,16 +152,117 @@ h2 {
     display: none;
 }
 
+/*creating the name for animation keyframe*/
 .fade {
     animation: fade-in 500ms ease-in 1;
     opacity: 1;
 }
 
+/*animation keyframe to fade-in the end-game pop-up*/
 @keyframes fade-in {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+/*media queries for different sized devices*/
+
+/*for tablets*/
+@media all and (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .scoreu, .scorec {
+        font-size: 50px;
+    }
+
+    .score-counteru, .score-counterc {
+        font-size: 22px;
+    }
+
+    .game-over-screen {
+        top: 28%;
+        left: 19%;
+        width: 62%;
+    }
+
+    .restart {
+        height: 45px;
+        width: 275px;
+    }
+
+    .individual {
+        font-size: 50px;
+        height: 90px;
+        width: 90px;
+    }
+}
+
+/*for mobile use*/
+@media all and (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 17px;
+    }
+
+    .scoreu, .scorec {
+        font-size: 40px;
+    }
+
+    #scoreboard {
+        gap: 170px;
+    }
+
+    .score2 {
+        gap: 75px;
+    }
+
+    .score-counteru, .score-counterc {
+        font-size: 20px;
+    }
+
+    .results {
+        font-size: 20px;
+    }
+
+    #selections {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        height: auto;
+    }
+
+    .game-over-screen {
+        top: 28%;
+        left: 19%;
+        width: 62%;
+        height: 400px;
+    }
+
+    .game-over-result, .game-over-content {
+        font-size: 16px;
+    }
+
+    .restart {
+        font-size: 14px;
+        height: 45px;
+        width: 240px;
+    }
+
+    .individual {
+        font-size: 40px;
+        height: 70px;
+        width: 70px;
     }
 }
